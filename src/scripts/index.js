@@ -46,6 +46,8 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
     }
 
 
+const world = 
+
     Globe()
     .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg')
     .labelsData(gData)
@@ -55,6 +57,10 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
     .labelColor('color')
     .labelDotRadius('size')
     (document.getElementById('globeViz'));
+
+world.controls().autoRotate = true;
+world.controls().autoRotateSpeed = 0.05;
+
 });
 
 
