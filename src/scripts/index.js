@@ -56,6 +56,7 @@ const world =
     .labelSize('size')
     .labelColor('color')
     .labelDotRadius('size')
+    .labelAltitude(0.01)
     (document.getElementById('globeViz'));
 
 world.controls().autoRotate = true;

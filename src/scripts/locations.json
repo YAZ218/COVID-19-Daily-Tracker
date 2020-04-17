@@ -1048,7 +1048,7 @@
       "latitude": -13.5,
       "longitude": 34
     },
-    {
+    { 
       "country": "Malaysia",
       "alpha2": "MY",
       "alpha3": "MYS",
@@ -1441,7 +1441,7 @@
       "longitude": 25
     },
     {
-      "country": "Russian Federation",
+      "country": "Russia",
       "alpha2": "RU",
       "alpha3": "RUS",
       "numeric": 643,
