@@ -5,4 +5,4 @@
 Using globe.gl from https://github.com/vasturiano/globe.gl to visualize latest Coronavirus cases in every country. This includes cases confirmed, recovered, and deceased.
 
 
-https://i.imgur.com/nZ37EUY.png
+![image](https://i.imgur.com/nZ37EUY.png)
