@@ -60,10 +60,9 @@ const world =
     (document.getElementById('globeViz'));
 
 world.controls().autoRotate = true;
-world.controls().autoRotateSpeed = 0.05;
+world.controls().autoRotateSpeed = 1;
 
 });
-
 
 
 
