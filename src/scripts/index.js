@@ -15,6 +15,7 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
     .then(data => {
         let totalCases = 0;
         let totalRecovered = 0;
+
         for (let key of Object.keys(data)) {
             let country_info = locationsJSON.ref_country_codes.filter((item) => {
                 if (item.country == key) {
@@ -37,10 +38,8 @@ fetch("https://pomber.github.io/covid19/timeseries.json")
                 totalRecovered += data[key].pop().recovered;
             }
 
-
             document.getElementById('total-cases').innerHTML = totalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
             document.getElementById('total-recovered').innerHTML = totalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
             gData.push({
                 lat: country_info[0].latitude,
                 lng: country_info[0].longitude,
