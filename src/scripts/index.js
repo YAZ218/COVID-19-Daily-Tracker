@@ -2,8 +2,15 @@ import '../styles/index.scss';
 
 var locationsJSON = require('./locations.json');
 
-const N = 300;
 let gData = [];
+
+function numFormat(num)
+{
+    if(typeof num !== 'undefined'){
+        num = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    return num;
+}
 
 const weightColor = d3.scaleLinear()
     .domain([0, 60])
@@ -15,40 +22,39 @@ fetch("https://api.thevirustracker.com/free-api?global=stats")
     .then(data => {
         let totalCases = 0;
         let totalRecovered = 0;
+        let totalDeaths = 0;
+   
+        totalCases = data['results'][0].total_cases;
+        totalRecovered = data['results'][0].total_recovered;
+        totalDeaths = data['results'][0].total_deaths;
 
-        for (let key of Object.keys(data)) {
-            totalCases = data[key][0].total_cases;
-            totalRecovered = data[key][0].total_recovered;
-
-            document.getElementById('total-cases').innerHTML = totalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            document.getElementById('total-recovered').innerHTML = totalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
+        document.getElementById('total-cases').innerHTML = numFormat(totalCases);
+        document.getElementById('total-recovered').innerHTML = numFormat(totalRecovered);
+        document.getElementById('total-deaths').innerHTML = numFormat(totalDeaths);
     });
-
-fetch("https://pomber.github.io/covid19/timeseries.json")
+    
+fetch("https://api.covid19api.com/summary")
     .then(response => response.json())
     .then(data => {
-
-        for (let key of Object.keys(data)) {
+        for (let info of data['Countries']) {
             let country_info = locationsJSON.ref_country_codes.filter((item) => {
-                if (item.country == key) {
+                if (item.country == info.Country) {
                     return true;
                 }
+
             });
 
             if (country_info.length == 0) {
                 continue;
             }
 
-            const totals = data[key].pop();
-
             gData.push({
                 lat: country_info[0].latitude,
                 lng: country_info[0].longitude,
-                size: Math.log(totals.confirmed) / 10,
-                color: weightColor(totals.confirmed),
+                size: Math.log(info.TotalConfirmed) / 10,
+                color: weightColor(info.TotalConfirmed),
                 names: country_info[0].country,
-                totals: 'Confirmed: ' + totals.confirmed + '<br/>Deaths: ' + totals.deaths + '<br/>Recovered: ' + totals.recovered
+                totals: 'Confirmed: ' + info.TotalConfirmed + '<br/>Deaths: ' + info.TotalDeaths + '<br/>Recovered: ' + info.TotalRecovered
             });
         }
 

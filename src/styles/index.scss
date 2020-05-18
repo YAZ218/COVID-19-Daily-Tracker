@@ -10,7 +10,22 @@ body {
   top: 5%;
   left: 5%;
   font-family: Arial, Helvetica, sans-serif;
-  color: darkred;
+  color: white;
   font-size: 125%;
   font-weight: bold;
+}
+
+#total-recovered
+{
+  color:green;
+}
+
+#total-cases
+{
+  color:red;
+}
+
+#total-deaths
+{
+  color:red;
 }
