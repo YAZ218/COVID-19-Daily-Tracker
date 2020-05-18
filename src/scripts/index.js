@@ -72,6 +72,5 @@ fetch("https://api.covid19api.com/summary")
                 
         world.controls().autoRotate = true;
         world.controls().autoRotateSpeed = 1;
-
     });
 
