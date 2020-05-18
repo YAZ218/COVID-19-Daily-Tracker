@@ -54,7 +54,7 @@ fetch("https://api.covid19api.com/summary")
                 size: Math.log(info.TotalConfirmed) / 10,
                 color: weightColor(info.TotalConfirmed),
                 names: country_info[0].country,
-                totals: 'Confirmed: ' + info.TotalConfirmed + '<br/>Deaths: ' + info.TotalDeaths + '<br/>Recovered: ' + info.TotalRecovered
+                totals: 'Confirmed: ' + numFormat(info.TotalConfirmed) + '<br/>Deaths: ' + numFormat(info.TotalDeaths) + '<br/>Recovered: ' + numFormat(info.TotalRecovered)
             });
         }
 
