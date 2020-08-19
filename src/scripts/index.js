@@ -6,10 +6,7 @@ let gData = [];
 
 function numFormat(num)
 {
-    if(typeof num !== 'undefined'){
-        num = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    return num;
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const weightColor = d3.scaleLinear()
@@ -41,7 +38,6 @@ fetch("https://api.covid19api.com/summary")
                 if (item.country == info.Country) {
                     return true;
                 }
-
             });
 
             if (country_info.length == 0) {
@@ -74,3 +70,10 @@ fetch("https://api.covid19api.com/summary")
         world.controls().autoRotateSpeed = 1;
     });
 
+    const globeMaterial = world.globeMaterial();
+    globeMaterial.bumpScale = 10;
+    new THREE.TextureLoader().load('//unpkg.com/three-globe/example/img/earth-water.png', texture => {
+      globeMaterial.specularMap = texture;
+      globeMaterial.specular = new THREE.Color('grey');
+      globeMaterial.shininess = 15;
+    });
