@@ -25,9 +25,9 @@ fetch("https://api.thevirustracker.com/free-api?global=stats")
         totalRecovered = data['results'][0].total_recovered;
         totalDeaths = data['results'][0].total_deaths;
 
-        document.getElementById('total-cases').innerHTML = numFormat(totalCases);
-        document.getElementById('total-recovered').innerHTML = numFormat(totalRecovered);
-        document.getElementById('total-deaths').innerHTML = numFormat(totalDeaths);
+        // document.getElementById('total-cases').innerHTML = numFormat(totalCases);
+        // document.getElementById('total-recovered').innerHTML = numFormat(totalRecovered);
+        // document.getElementById('total-deaths').innerHTML = numFormat(totalDeaths);
     });
     
 fetch("https://api.covid19api.com/summary")
@@ -42,16 +42,29 @@ fetch("https://api.covid19api.com/summary")
 
             if (country_info.length == 0) {
                 continue;
-            }
-
+            }  
+            
+            // if(info.TotalRecovered == 0)
+            // {
+            //     console.log("0");
+            //     gData.push({
+            //         totals: 'Confirmed: ' + numFormat(info.TotalConfirmed) + '<br/>Deaths: ' + numFormat(info.TotalDeaths)
+            //     });
+            //     continue;
+            // }
+            
             gData.push({
                 lat: country_info[0].latitude,
                 lng: country_info[0].longitude,
-                size: Math.log(info.TotalConfirmed) / 10,
-                color: weightColor(info.TotalConfirmed),
+                size: Math.log(info.TotalConfirmed) / 13,
+                color: weightColor(info.TotalDeaths),
                 names: country_info[0].country,
                 totals: 'Confirmed: ' + numFormat(info.TotalConfirmed) + '<br/>Deaths: ' + numFormat(info.TotalDeaths) + '<br/>Recovered: ' + numFormat(info.TotalRecovered)
-            });
+            }); 
+            
+            
+
+          
         }
 
         const world =
@@ -67,7 +80,7 @@ fetch("https://api.covid19api.com/summary")
                 (document.getElementById('globeViz'));
                 
         world.controls().autoRotate = true;
-        world.controls().autoRotateSpeed = 1;
+        world.controls().autoRotateSpeed = .25;
     });
 
     const globeMaterial = world.globeMaterial();
