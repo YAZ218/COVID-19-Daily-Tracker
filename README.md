@@ -6,3 +6,5 @@ Using globe.gl from https://github.com/vasturiano/globe.gl to visualize latest C
 
 
 ![image](https://i.imgur.com/nZ37EUY.png)
+
+https://yaznsarah.github.io/COVID-19-Daily-Tracker/
